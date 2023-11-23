@@ -1,4 +1,5 @@
 import { useState } from'react'
+// 共享的是邏輯 而不是狀態
 
 export const useCount = (init) => {
     const [count1, setCount1] = useState(init);

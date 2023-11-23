@@ -9,6 +9,12 @@ import { useCount } from './hooks/useCount';
 //- useEffect 是一个hook, 他会返回一个函数, 这个函数可以用来监听dom元素的变化
 
 
+//- 頁面渲染邏輯
+//1. state的改變會導致組件重新渲染【組件函數執行】
+//2. 父組件的重新渲染，必然導致子組件重新渲染
+
+//- 部分場景使用useRef 可以減少渲染次數
+
 
 const data = {};
 export default function Page() {
@@ -18,9 +24,13 @@ export default function Page() {
  
   a++;
   console.log(a, count, 'Page組件 render', ref.current)
+  //- hooks不能在普通函數裏面直接調用
+  // const {count1} = test(1)
+
   //- 邏輯的復用
   const { count1, add1, add2 } = useCount(3)
 
+  //- 一般用於處理請求 或者數據的初始化
   useEffect(() => {
     console.log('useEffect first render', ref)
   },[])
@@ -38,6 +48,7 @@ export default function Page() {
       <h1 className={styles.title}>Page index {count} </h1>
       <div onClick={() => setCount(count + 1)}>useState count: {count}</div>
       <div onClick={() => ref.current++}>useRef: {ref.current}</div>
+      {/* 邏輯復用 */}
       <div>count1: {count1}</div>
       <div onClick={() => add1()}>add1</div>
       <div onClick={() => add2()}>add2</div>

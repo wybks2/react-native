@@ -19,12 +19,13 @@ if (process.env.NODE_ENV === 'development') {
 import React from 'react';
 
 export async function getRoutes() {
-  const routes = {"hooks/useCount":{"path":"hooks/useCount","id":"hooks/useCount"},"component/son":{"path":"component/son","id":"component/son"},"index":{"path":"/","id":"index"}} as const;
+  const routes = {"hooks/useCount":{"path":"hooks/useCount","id":"hooks/useCount"},"component/son":{"path":"component/son","id":"component/son"},"utils/test":{"path":"utils/test","id":"utils/test"},"index":{"path":"/","id":"index"}} as const;
   return {
     routes,
     routeComponents: {
 'hooks/useCount': React.lazy(() => import(/* webpackChunkName: "p__hooks__useCount" */'../../pages/hooks/useCount.ts')),
 'component/son': React.lazy(() => import(/* webpackChunkName: "p__component__son" */'../../pages/component/son.tsx')),
+'utils/test': React.lazy(() => import(/* webpackChunkName: "p__utils__test" */'../../pages/utils/test.ts')),
 'index': React.lazy(() => import(/* webpackChunkName: "p__index" */'../../pages/index.tsx')),
 },
   };
